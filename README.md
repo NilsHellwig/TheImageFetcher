@@ -25,7 +25,7 @@ That's it! Just place your chromedriver anywhere you want. Make sure to that you
 
 #### Via requirements.txt
 1. run `python -m venv venv`
-2. ```pip install -r requirements.txt  
+2. `pip install -r requirements.txt`
 
 #### By Hand With pip
 1. run `python -m venv venv`
