@@ -22,6 +22,9 @@ That's it! Just place your chromedriver anywhere you want. Make sure to that you
 
 ### Basic Usage
 
+run file`run.py`
+
+
 ```python
 from TheImageFetcher import TheImageFetcher as img_fetcher
 
