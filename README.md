@@ -28,7 +28,7 @@ from TheImageFetcher import the_image_fetcher as img_fetcher
 chromedriver_path = '/Users/Max_Mustermann/Downloads/chromedriver' # your absolute path of chromedriver!
 query = "wheaten terrier" # specify the query for which you want to extract the images
 
-img_fetcher.set_chrome_driver(chromedriver_path) # 
+img_fetcher.set_chrome_driver(chromedriver_path)
 img_fetcher.fetch_images(query)
 ```
 
