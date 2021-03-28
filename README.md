@@ -26,6 +26,8 @@ img_fetcher.set_chrome_driver(chromedriver_path) #
 img_fetcher.fetch_images(query)
 ```
 
+Images are saved with a random id as .jpg in the images folder. 
+
 ### Advanced Parameters
 
 ## Future
