@@ -51,7 +51,7 @@ img_fetcher.fetch_images(query)
 
 Images are saved with a random id as .jpg in the images folder. 
 
-### (Advanced) Parameters of fetch_images() 
+### (Advanced) Parameters Of fetch_images() 
 
 default parameters:
 
