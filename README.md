@@ -37,6 +37,7 @@ Images are saved with a random id as .jpg in the images folder.
 ### (Advanced) Parameters of fetch_images() 
 
 default parameters:
+
 ```query, iterations=1, loading_time=5, dir_name="images", create_source_file=False, file_type="jpg", print_progress=True```
 
 - `query`: the query for which you want to extract the images
