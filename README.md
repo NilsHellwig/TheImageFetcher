@@ -23,7 +23,7 @@ That's it! Just place your chromedriver anywhere you want. Make sure to that you
 ### Basic Usage
 
 ```python
-from TheImageFetcher import the_image_fetcher as img_fetcher
+from TheImageFetcher import TheImageFetcher as img_fetcher
 
 chromedriver_path = '/Users/Max_Mustermann/Downloads/chromedriver' # your absolute path of chromedriver!
 query = "wheaten terrier" # specify the query for which you want to extract the images
