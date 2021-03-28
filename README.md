@@ -1,3 +1,9 @@
+<p align="center">
+    <br>
+    <img src="banner.png" alt="Ernie Logo" width="100%" style="border-radius:18px"/>
+    <br>
+<p>
+
 # TheImageFetcher
 TheImageFetcher is a high-performance tool that allows you to quickly extract large amounts of images from Google Images. Depending on the internet connection, it is possible to fetch an image within one second. The tool allows to save the image sources in an external text file and to specify the path where the images should be saved for a search query. 
 
@@ -7,7 +13,7 @@ If large amounts of image data are needed to train neural networks in the contex
 
 ## Requirements
 
-* Python3 
+* python3 
 * [Chrome Driver](https://chromedriver.chromium.org/) - Please make sure to download chromedriver for your currently installed Google Chrome version.
 
 That's it! Just place your chromedriver anywhere you want. Make sure to that you can copy the absolute path of chromedriver!
