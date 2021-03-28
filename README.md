@@ -28,8 +28,18 @@ img_fetcher.fetch_images(query)
 
 Images are saved with a random id as .jpg in the images folder. 
 
-### Advanced Parameters
+### (Advanced) Parameters of fetch_images() 
 
+default parameters:
+```query, iterations=1, loading_time=5, dir_name="images", create_source_file=False, file_type="jpg", print_progress=True```
+
+- `query`: the query for which you want to extract the images
+- `iterations`: the number of scrolls to be made on the google images SERP. The higher the number, the more images can be fetched and the longer the page takes to load initially.
+- `loading_time`: the time to wait for another set of images to load on the SERP. This number can be set lower the better your internet connection is.
+- `dir_name`: the name of the directory in which you want to store the images
+- `create_source_file`: an additional text file can be saved in the root directory, in which the sources of the images are stored.
+- `file_type`: specify which filetype you want to story (for example "png" or "jpg")
+- `print_progress`: On the one hand, of course, you can see how many images are already in the folder, but on the other hand, you can also display the proportion of images that have already been crawled.
 ## Future
 
 I will try to make the package accessible via pip.
