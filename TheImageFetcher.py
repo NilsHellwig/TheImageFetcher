@@ -9,6 +9,7 @@ import requests
 import uuid
 import os
 from termcolor import colored
+from selenium.webdriver.common.keys import Keys
 
 class TheImageFetcher:
     def set_chrome_driver(self, chromedriver_path):
@@ -16,15 +17,16 @@ class TheImageFetcher:
 
     def set_url_stem(self, query):
         query = query.replace(" ", "+")
-        url_stem = "https://www.google.de/search?q="+query+"&source=lnms&tbm=isch"
+        url_stem = "https://www.google.com/search?q="+query+"&source=lnms&tbm=isch"+self.search_mode
         self.url_stem = url_stem
 
-    def fetch_images(self, query, iterations=1, loading_time=5, dir_name="images", create_source_file=False, file_type="jpg", print_progress=True):
+    def fetch_images(self, query, loading_time=5, dir_name="images", create_source_file=False, file_type="jpg", print_progress=True, search_mode=""):
         self.create_source_file = create_source_file
         self.file_type = file_type
         self.print_progress = print_progress
-        self.set_url_stem(query)
+        self.search_mode = search_mode
         dir_name.replace(" ", "_")
+        self.set_url_stem(query)
         url = self.url_stem
         chrome_options = Options()
         # Opens the browser up in background
@@ -32,57 +34,47 @@ class TheImageFetcher:
         browser = Chrome(options=chrome_options,
                          executable_path=self.chromedriver_path)
         browser.get(url)
-        for i in range(iterations):
-            browser.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(4)
+        html = browser.find_element_by_tag_name('html')
+        html.send_keys(Keys.END)
+        time.sleep(4)
         html = browser.page_source
+
+        with open("save.html", "w") as file:
+           file.write(html)
+
         soup = BeautifulSoup(html, 'html.parser')
         counter = 0
-        ids = soup.find_all("div", {"data-id": re.compile(r"\b\w{14}\b")})
-        saved_ids = []
-        for a in ids:
-            counter += 1
-            element_soup = BeautifulSoup(str(a), "html.parser")
-            for meta in element_soup:
-                saved_ids.append(meta.attrs['data-id'])
-        self.get_image_urls(saved_ids, dir_name)
-
-    def get_image_urls(self, image_ids, dir_name):
+        image_divs = soup.find_all(name='script')
         image_urls = []
-        counter = 0
         try:
             os.mkdir(dir_name)
         except:
             print(colored('WARNING: This folder named '+dir_name+' has already been created. This can lead to errors because duplicates can occur.', 'red'))
-        for image_id in image_ids:
+        for div in image_divs:
+              txt = str(div)
+              if 'AF_initDataCallback' not in txt:
+                  continue
+              if 'ds:0' in txt or 'ds:1' not in txt:
+                  continue
+              uris = re.findall(r'http.*?\.(?:jpg|jpeg)', txt)
+              image_urls = uris+ image_urls
+        for image in image_urls:
             counter += 1
-            chrome_options = Options()
-            # Opens the browser up in background
-            chrome_options.add_argument("--headless")
-            browser = Chrome(options=chrome_options,
-                             executable_path=self.chromedriver_path)
-            browser.get(self.url_stem+"#imgrc="+image_id)
-            html = browser.page_source
-            soup = BeautifulSoup(html, 'html.parser')
-            ids = soup.select('div > div > div > div > div > a > img')
-            for id in ids:
-                element_soup = BeautifulSoup(str(id), "html.parser")
-                for meta in element_soup:
-                    if meta.attrs['src'].startswith("https://encrypted") == False and meta.attrs['src'].startswith("data:image") == False:
-                        if self.print_progress is True:
-                            print("progress:", '{:.1%}'.format(counter/len(image_ids)))
-                        image_urls.append(meta.attrs['src'])
-                        self.save_image_to_dir(
-                            meta.attrs['src'], dir_name, uuid.uuid4())
-        return image_urls
+            if self.print_progress is True:
+                print("progress:", '{:.1%}'.format(counter/len(image_urls)))
+            self.save_image_to_dir(image, dir_name, uuid.uuid4())
 
     def save_image_to_dir(self, url, dir_name, file_name):
         try:
-            urllib.request.urlretrieve(url, dir_name+"/"+str(file_name)+"."+self.file_type)
-            self.save_to_source_file(url, dir_name+"/"+str(file_name)+"."+self.file_type)
+             request = urllib.request.urlopen(url, timeout=5)
+             with open(dir_name+"/"+str(file_name)+"."+self.file_type, 'wb') as f:
+                try:
+                   f.write(request.read())
+                   self.save_to_source_file(url, dir_name+"/"+str(file_name)+"."+self.file_type)
+                except:
+                   print("error")
         except:
-            pass
+             pass
 
     def save_to_source_file(self, url, dir):
         if self.create_source_file is True:
