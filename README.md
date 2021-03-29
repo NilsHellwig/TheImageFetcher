@@ -55,15 +55,15 @@ Images are saved with a random id as .jpg in the images folder.
 
 default parameters:
 
-```query, iterations=1, loading_time=5, dir_name="images", create_source_file=False, file_type="jpg", print_progress=True```
+```query, loading_time=5, dir_name="images", create_source_file=False, file_type="jpg", print_progress=True, mode=""```
 
 - `query`: the query for which you want to extract the images
-- `iterations`: the number of scrolls to be made on the google images SERP. The higher the number, the more images can be fetched and the longer the page takes to load initially.
-- `loading_time`: the time to wait for another set of images to load on the SERP. This number can be set lower the better your internet connection is.
+- `loading_time`: the time you want the system to wait until the site has been loaded. This number can be set lower the better your internet connection is.
 - `dir_name`: the name of the directory in which you want to store the images
 - `create_source_file`: an additional text file can be saved in the root directory, in which the sources of the images are stored.
 - `file_type`: specify which filetype you want to story (for example "png" or "jpg")
 - `print_progress`: On the one hand, of course, you can see how many images are already in the folder, but on the other hand, you can also display the proportion of images that have already been crawled.
+- `search_mode`: add Google-Search paramter. You can find those [here](https://stenevang.wordpress.com/2013/02/22/google-advanced-power-search-url-request-parameters/). For example `"search_mode="&tbs=qdr:m"` as a parameter.
 ## Future
 
 I will try to make the package accessible via pip.
