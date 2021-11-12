@@ -7,7 +7,7 @@
 # TheImageFetcher
 TheImageFetcher is a high-performance tool that allows you to quickly extract large amounts of images from Google Images. Depending on the internet connection, it is possible to fetch over 70 high-resolution images within seconds. The tool allows to save the URLs of these images in an external text file and to specify the path where the images should be saved for a search query. 
 
-## Why Should You Use This Tool?
+## Why should you use TheImageFetcher?
 
 If large amounts of image data are needed to train neural networks in the context of image recognition, Google is of course the best source. TheImageFetcher is very easy to use and is also adapted to the 2021 version of Google Images! 
 
@@ -19,9 +19,9 @@ If large amounts of image data are needed to train neural networks in the contex
 
 That's it! Just place your chromedriver anywhere you want. Make sure to that you can copy the absolute path of chromedriver!
 
-## How To Use
+## How to use
 
-### Install Required Packages
+### Install required packages
 
 #### Via requirements.txt
 1. run `python -m venv venv`
@@ -51,7 +51,7 @@ img_fetcher.fetch_images(query)
 
 Images are saved with a random id as .jpg in the images folder. 
 
-### (Advanced) Parameters Of fetch_images() 
+### (Advanced) Parameters of fetch_images() 
 
 default parameters:
 
