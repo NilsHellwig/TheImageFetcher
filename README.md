@@ -5,7 +5,7 @@
 <p>
 
 # TheImageFetcher (still compatible in 01/2022)
-TheImageFetcher is a high-performance tool that allows you to quickly extract large amounts of images from Google Images. Depending on the internet connection, it is possible to fetch over 70 high-resolution images within seconds. The tool allows to save the URLs of these images in an external text file and to specify the path where the images should be saved for a search query. 
+TheImageFetcher is a powerful tool that lets users quickly extract large amounts of images from Google Images. Depending on the Internet connection, it is possible to retrieve more than 70 high-resolution images within seconds. The tool allows saving the URLs of these images in an external text file and specifying the path where the images should be saved for a search query.
 
 ## Why should you use TheImageFetcher?
 
