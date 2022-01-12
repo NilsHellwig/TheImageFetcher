@@ -39,9 +39,6 @@ class TheImageFetcher:
         time.sleep(4)
         html = browser.page_source
 
-        with open("save.html", "w") as file:
-           file.write(html)
-
         soup = BeautifulSoup(html, 'html.parser')
         counter = 0
         image_divs = soup.find_all(name='script')
@@ -62,7 +59,7 @@ class TheImageFetcher:
             counter += 1
             if self.print_progress is True:
                 print("progress:", '{:.1%}'.format(counter/len(image_urls)))
-            self.save_image_to_dir(image, dir_name, uuid.uuid4())
+            self.save_image_to_dir("https://"+image.split('["https://')[-1], dir_name, uuid.uuid4())
 
     def save_image_to_dir(self, url, dir_name, file_name):
         try:
